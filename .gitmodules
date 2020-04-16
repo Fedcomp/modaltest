@@ -1,0 +1,3 @@
+[submodule "js-bot-detector"]
+	path = js-bot-detector
+	url = https://github.com/RoBYCoNTe/js-bot-detector.git
