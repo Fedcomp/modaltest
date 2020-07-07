@@ -59,6 +59,30 @@
         }
 
         /*
+            Outside top
+            Always trimmed
+        */
+        .box_outside_top {
+            background: black;
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            top: -10px;
+        }
+
+        /*
+            Outside left
+            Always trimmed
+        */
+        .box_outside_left {
+            background: black;
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            left: -10px;
+        }
+
+        /*
             worker can't scroll horizontally
             so extension crops anything
             horizontally outside viewport
@@ -91,6 +115,8 @@
     <div class="box_on_page"></div>
     <div class="box_20px_on_page"></div>
     <div class="box_10px_on_page"></div>
+    <div class="box_outside_top"></div>
+    <div class="box_outside_left"></div>
     <div class="box_outside_hor_scroll"></div>
     <div class="box_sizeless"></div>
 </body>
