@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+    <title>Test element bounds</title>
+    <style>
+        html {
+            padding: 0px;
+            margin: 0px;
+            width: 1280;
+            height: 720;
+        }
+
+        body {
+            padding: 0px;
+            margin: 0px;
+            width: 1280;
+            height: 720;
+            position: relative;
+        }
+
+        /* box completely visible in viewport */
+        .box_on_viewport {
+            background: lime;
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+
+        /* box completely reachable on page (vertically) */
+        .box_on_page {
+            background: darkgreen;
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            top: 710px;
+            left: 0px;
+        }
+
+        /* box is 10px left on page (10px is minimal threshold) */
+        .box_10px_on_page {
+            background: red;
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            top:  20px;
+            left: -10px;
+        }
+
+        /* box is 20px on page from top */
+        .box_20px_on_page {
+            background: darkred;
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            top: -10px;
+            left: 15px;
+        }
+
+        /*
+            worker can't scroll horizontally
+            so extension crops anything
+            horizontally outside viewport
+        */
+        .box_outside_hor_scroll {
+            background: darkslategray;
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            top: 0px;
+            left: 1270px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box_on_viewport"></div>
+    <div class="box_on_page"></div>
+    <div class="box_20px_on_page"></div>
+    <div class="box_10px_on_page"></div>
+    <div class="box_outside_hor_scroll"></div>
+</body>
+</html>
