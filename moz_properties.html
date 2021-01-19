@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Moz properties test</title>
+  </head>
+<body>
+  <script>
+    for(var propertyName in window) {
+      if (propertyName.startsWith('moz')) {
+        document.write('<br>')
+        document.write(propertyName + ': ' + window[propertyName])
+      }
+    }
+  </script>
+</body>
+</html>
