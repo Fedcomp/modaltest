@@ -8,7 +8,7 @@
         if(document.cookie.match(/onceSet/)) {
             document.write('<h1 style="color: darkgreen">Cookie is active</h1>')
         } else {
-            document.cookie = 'onceSet=value'
+            document.cookie = 'onceSet=value; expires=Tue, 19 Jan 2038 03:14:07 GMT"'
             document.write('<h1 style="color: red">Cookie set</h1>')
         }
     </script>
