@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+<head>
+    <title>Cookie Test</title>
+</head>
+<body>
+    <script>
+        if(document.cookie.match(/onceSet/)) {
+            document.write('<h1 style="color: darkgreen">Cookie is active</h1>')
+        } else {
+            document.cookie = 'onceSet=value'
+            document.write('<h1 style="color: red">Cookie set</h1>')
+        }
+    </script>
+</body>
+</html>
