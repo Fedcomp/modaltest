@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Chrome speech voices list</title>
+</head>
+
+<body>
+    <script>
+        window.addEventListener('load', function () {
+            // Google sends remote request before showing list of remote voices
+            // https://stackoverflow.com/a/62893194/656669
+            const speechWaitSeconds = 3
+            // Initiate request
+            window.speechSynthesis.getVoices()
+
+            document.getElementById('navigator').innerHTML = window.navigator.userAgent
+            document.getElementById('speech-data').innerHTML =
+                `Please wait ${speechWaitSeconds} seconds for speech to load`
+            
+            setTimeout(() => {
+                const voices = window.speechSynthesis.getVoices().map(e => {
+                    return {
+                        default: e.default,
+                        lang: e.lang,
+                        localService: e.localService,
+                        name: e.name,
+                        voiceURI: e.voiceURI
+                    }
+                })
+
+                document.getElementById('speech-data').innerHTML = JSON.stringify(voices, null, 2)
+            }, speechWaitSeconds * 1000)
+        })
+    </script>
+    <noscript>Page requires javascript it's disabled. Please enable javascript.</noscript>
+    <b id='navigator'></b>
+    <pre id='speech-data'></pre>
+</body>
+
+</html>
