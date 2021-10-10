@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+    <title>iframe sandbox contentWindow test</title>
+</head>
+<body>
+    <iframe id='iframe_sandbox' sandbox='allow-same-origin' style='display:none'></iframe>
+
+    <b>root window navigator platform: </b> <b id='rootWindow'></b>
+    <br />
+    <b>sandbox window navigator platform: </b> <b id='sandboxWindow'></b>
+
+    <script>
+        window.addEventListener('load', function () {
+            const rootWindow = window
+            const sandboxWindow = document.getElementById('iframe_sandbox').contentWindow
+            const rootLabel = document.getElementById('rootWindow')
+            const sandboxLabel = document.getElementById('sandboxWindow')
+
+            rootLabel.innerHTML = rootWindow.navigator.platform
+            sandboxLabel.innerHTML = sandboxWindow.navigator.platform
+        })
+    </script>
+</body>
+</html>
