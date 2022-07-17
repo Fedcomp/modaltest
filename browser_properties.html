@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+    <title>Display known browser properties</title>
+</head>
+<body>
+    <script>
+        class PropertyCollector {
+            pathDelimeter = '.'
+
+            async collectProperties(propertiesPath) {
+                const self = this
+                return Promise.all(
+                    propertiesPath.map(p => self.collectProperty(p))
+                )
+            }
+
+            async collectProperty(propertyPath) {
+                const path = propertyPath.split(this.pathDelimeter)
+                const value = await this.collectPathValue(path, window)
+                return [propertyPath, value]
+            }
+
+            async collectPathValue(path, traversableObject) {
+                const current = path.shift()
+
+                // Final destination
+                if (!current) {
+                    // Just return final destination of traversable object
+                    return traversableObject;
+                // Regular path key, dig into it
+                } else {
+                    // In case you are deep into path that browser is missing on earlier level
+                    if (!traversableObject) {
+                        return traversableObject
+                    }
+
+                    traversableObject = await traversableObject[current]
+                    return await this.collectPathValue(path, traversableObject)
+                }
+            }
+        }
+
+        const propertiesPath = [
+            'screen.availHeight',
+            'screen.availLeft',
+            'screen.availTop',
+            'screen.availWidth',
+            'screen.colorDepth',
+            'screen.height',
+            'screen.orientation.angle',
+            'screen.orientation.type',
+            'screen.pixelDepth',
+            'screen.width',
+        ];
+
+        window.addEventListener("load", function(event) {
+            (async () => {
+                const collector = new PropertyCollector()
+                const properties = await collector.collectProperties(propertiesPath)
+                const data = document.getElementById('properties')
+                console.log({data})
+                data.innerText = JSON.stringify(properties, null, 2)
+            })()
+        })
+    </script>
+
+    <pre id="properties"></pre>
+</body>
+</html>
