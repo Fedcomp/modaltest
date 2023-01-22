@@ -25,9 +25,15 @@
 </head>
 <body>
     <script>
-        console.log('The info array message ', Math.random())
+        let methodName = (new URLSearchParams(window.location.search)).get('method')
+        if (! methodName) {
+            methodName = 'log'
+        }
+
+        let method = console[methodName]
+        method('The array message', Math.random())
         setInterval(() => {
-            console.log('The info message ' + Math.random())
+            method(`The ${methodName} message ` + Math.random())
         }, 1)
     </script>
 </body>
