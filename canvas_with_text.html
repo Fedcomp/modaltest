@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+<head>
+    <title>Canvas with text</title>
+</head>
+<body>
+    <canvas id='canvas' width='150px' height='150px'></canvas>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        ctx.font = '30px Arial';
+        ctx.fillText('Hello World', 10, 50);
+    </script>
+</body>
+</html>
